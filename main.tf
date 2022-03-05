@@ -1,7 +1,8 @@
 module "baseline" {
   #source      = "app.terraform.io/rene_shiphero/baseline/aws"
-  source      = "spacelift.io/renemontilva/terraform-aws-baseline/default"
-  version     = "1.0.1"
+  source = "spacelift.io/renemontilva/terraform-aws-baseline/default"
+  #version     = "1.0.1"
+  version     = "0.1.0"
   environment = var.environment
 }
 #module "database" {
