@@ -1,8 +1,8 @@
 module "baseline" {
-  source  = "rene_shiphero/baseline/aws"
-  version = "1.0.0"
+  source      = "app.terraform.io/rene_shiphero/baseline/aws"
+  version     = "1.0.0"
+  environment = var.environment
 }
-
 #module "database" {
 #  source  = "shiphero/database/aws"
 #  version = "1.0.1"
