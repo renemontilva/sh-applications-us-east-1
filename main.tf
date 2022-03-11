@@ -1,10 +1,19 @@
 module "baseline" {
-  #source      = "app.terraform.io/rene_shiphero/baseline/aws"
-  source = "spacelift.io/renemontilva/terraform-aws-baseline/default"
-  #version     = "1.0.1"
-  version     = "0.1.0"
+  source  = "app.terraform.io/rene_shiphero/baseline/aws"
+  version = "1.0.2"
+  #source = "spacelift.io/renemontilva/terraform-aws-baseline/default"
+  #version     = "0.1.0"
   environment = var.environment
 }
+
+module "eventapp" {
+  source             = "app.terraform.io/rene_shiphero/eventapp/aws"
+  version            = "0.0.2"
+  instance_type      = var.instance_type
+  subnet_id          = module.baseline.private_subnet.id
+  security_group_ids = [module.baseline.sg_backend_app.id]
+}
+
 #module "database" {
 #  source  = "shiphero/database/aws"
 #  version = "1.0.1"
@@ -20,10 +29,6 @@ module "baseline" {
 #  version = "1.0.0"
 #}
 #
-#module "eventapp" {
-#  source  = "shiphero/eventapp/aws"
-#  version = "1.0.0"
-#}
 #
 #module "trackingapp" {
 #  source  = "shiphero/trackingapp"
